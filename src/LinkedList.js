@@ -1,23 +1,23 @@
-import { Node } from "./Node";
+import { Node } from "./Node.js";
 
-class LinkedList {
+export class LinkedList {
   constructor(value) {
     this.headNode = new Node(value);
   }
 
   append(value) {
     let pointer = this.headNode;
-    while (pointer.next != null) {
-      pointer = pointer.next;
+    while (pointer.nextNode != null) {
+      pointer = pointer.nextNode;
     }
-    pointer.next = new Node(value);
+    pointer.nextNode = new Node(value);
     return this.headNode;
   }
 
   prepend(value) {
     let newNode = new Node(value);
     newNode.nextNode = this.headNode;
-    return newNode;
+    this.headNode = newNode;
   }
 
   size() {
@@ -51,5 +51,18 @@ class LinkedList {
       pointer = pointer.nextNode;
     }
     return pointer;
+  }
+
+  at(index) {}
+
+  toString() {
+    let string = "";
+    let pointer = this.headNode;
+    while (pointer !== null) {
+      string += `( ${pointer.value} ) -> `;
+      pointer = pointer.nextNode;
+    }
+    string += `${pointer}`;
+    return string;
   }
 }
