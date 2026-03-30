@@ -5,6 +5,7 @@ export class LinkedList {
     this.headNode = new Node(value);
   }
 
+  // tested
   append(value) {
     let pointer = this.headNode;
     while (pointer.nextNode != null) {
@@ -14,12 +15,14 @@ export class LinkedList {
     return this.headNode;
   }
 
+  // tested
   prepend(value) {
     let newNode = new Node(value);
     newNode.nextNode = this.headNode;
     this.headNode = newNode;
   }
 
+  // tested
   size() {
     let count = 0;
     if (this.headNode === null) {
@@ -34,28 +37,31 @@ export class LinkedList {
     return count;
   }
 
+  // tested
   head() {
-    if (this.headNode === false) {
+    if (!this.headNode) {
       return undefined;
     } else {
-      return this.headNode;
+      return this.headNode.value;
     }
   }
 
+  // tested
   tail() {
-    if (this.headNode === false) {
+    if (!this.headNode) {
       return undefined;
     }
-    let pointer = this.head();
-    while (pointer.next !== null) {
+    let pointer = this.headNode;
+    while (pointer.nextNode !== null) {
       pointer = pointer.nextNode;
     }
-    return pointer;
+    return pointer.value;
   }
 
+  // tested
   at(index) {
-    let count = 1;
-    let pointer = head;
+    let count = 0;
+    let pointer = this.headNode;
     while (pointer !== null) {
       if (count == index) {
         return pointer.value;
@@ -66,6 +72,7 @@ export class LinkedList {
     return undefined;
   }
 
+  // tested
   toString() {
     let string = "";
     let pointer = this.headNode;
@@ -77,6 +84,7 @@ export class LinkedList {
     return string;
   }
 
+  // tested
   pop() {
     if (!this.headNode) {
       return undefined;
@@ -87,16 +95,19 @@ export class LinkedList {
     }
   }
 
+  // tested
   contains(value) {
     let pointer = this.headNode;
     while (pointer !== null) {
       if (pointer.value === value) {
         return true;
       }
+      pointer = pointer.nextNode;
     }
     return false;
   }
 
+  // tested
   findIndex(value) {
     let index = 0;
     let pointer = this.headNode;
@@ -105,6 +116,7 @@ export class LinkedList {
         return index;
       }
       index++;
+      pointer = pointer.nextNode;
     }
     return -1;
   }
