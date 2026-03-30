@@ -53,7 +53,18 @@ export class LinkedList {
     return pointer;
   }
 
-  at(index) {}
+  at(index) {
+    let count = 1;
+    let pointer = head;
+    while (pointer !== null) {
+      if (count == index) {
+        return pointer.value;
+      }
+      pointer = pointer.nextNode;
+      count++;
+    }
+    return undefined;
+  }
 
   toString() {
     let string = "";
@@ -64,5 +75,37 @@ export class LinkedList {
     }
     string += `${pointer}`;
     return string;
+  }
+
+  pop() {
+    if (!this.headNode) {
+      return undefined;
+    } else {
+      const val = this.headNode.value;
+      this.headNode = this.headNode.nextNode;
+      return val;
+    }
+  }
+
+  contains(value) {
+    let pointer = this.headNode;
+    while (pointer !== null) {
+      if (pointer.value === value) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  findIndex(value) {
+    let index = 0;
+    let pointer = this.headNode;
+    while (pointer !== null) {
+      if (pointer.value === value) {
+        return index;
+      }
+      index++;
+    }
+    return -1;
   }
 }
